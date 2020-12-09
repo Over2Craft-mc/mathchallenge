@@ -10,12 +10,12 @@
  
  `[Over2Math] The answere was 40. Congratulation magrigry`
 
-# Requirements 
+## Requirements 
 * Spigot 1.16.4 (others version not tested)
 * Vault
 * Economy plugin (tested with CC3)
 
-# Configuration 
+## Configuration 
 ```yaml
 # Example -> [Over2Math] How much is 20 + 20
 challenge_message: '§8[§6Over§b2§2Math§8] §cHow much is %s + %s ?'
@@ -33,3 +33,5 @@ challenge_interval_in_seconds: 300
 challenge_money_reward: 100
 ```
 
+## Download
+https://over2craft-mc.github.io/mathchallenge/target/mathchallenge.jar
