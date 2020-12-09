@@ -1,0 +1,16 @@
+name: mathchallenge
+version: 1.0
+author: Over2Craft
+main: com.over2craft.mathchallenge.Main
+
+depend: [Vault]
+
+commands:
+  mathchallengereload:
+    description: Reload mathchallenge configuration
+    permission: over2craft.mathchallenge.reload
+
+permissions:
+  over2craft.mathchallenge.reload:
+    description: Allows game command
+    default: op
