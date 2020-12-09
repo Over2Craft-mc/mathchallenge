@@ -1,6 +1,6 @@
 # Math Challenge
  
- A minecraft plugin that ask each x seconds for players a mathematic addition : [5, 100] + [5,100]
+ A minecraft plugin that ask each x seconds players to answere an addition : [5, 100] + [5,100]
  
  For example 
  
