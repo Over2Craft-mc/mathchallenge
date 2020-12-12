@@ -48,7 +48,11 @@ public class Challenge {
         });
 
         Main.plugin.getServer().broadcastMessage(
-                String.format(Objects.requireNonNull(Main.plugin.getConfig().getString("won_message")), getAnswere().toString(), player.getDisplayName())
+                String.format(Objects.requireNonNull(Main.plugin.getConfig().getString("won_message")),
+                        getAnswere().toString(),
+                        player.getDisplayName(),
+                        ((Integer) Main.plugin.getConfig().getInt("challenge_money_reward")).toString()
+                )
         );
 
         playing = false;
