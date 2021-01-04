@@ -1,6 +1,6 @@
 # challenge_message: '§8[§6Over§b2§2Math§8] §cHow much is %s + %s ?'
 # Example -> [Over2Math] How much is 20 + 20
-challenge_message: '§8[§6Over§b2§2Math§8] §cCombien font %s + %s ?'
+challenge_message: '§8[§6Over§b2§2Math§8] §cCombien font %s %s %s ?'
 
 # won_message: '§8[§6Over§b2§2Math§8]§c The answere was %s. Congratulation %s you won 100 coins'
 # Example -> [Over2Math] The answere was 40. Congratulation playername you won 100 coins
@@ -11,4 +11,7 @@ won_message: '§8[§6Over§b2§2Math§8]§c La réponse était %s. Bravo %s, tu 
 challenge_interval_in_seconds: 300
 
 # How much money player win when he find the correct answere
-challenge_money_reward: 100
+challenge_money_reward: 
+  multiplication: 300
+  subtraction: 150
+  addition: 100
