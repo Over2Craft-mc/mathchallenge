@@ -16,7 +16,7 @@ public class Challenge {
     private static int term2;
 
     public static boolean isPlaying() {
-        return currentOperation == Operation.NONE;
+        return currentOperation != Operation.NONE;
     }
 
     public static int getCurrentResult() {
@@ -28,11 +28,11 @@ public class Challenge {
 
         switch(currentOperation) {
             case MULTIPLICATION:
-                setResultWithMaxTermValue(10, currentOperation);
+                setResultWithMaxTermValue(10);
             case SUBTRACTION:
-                setResultWithMaxTermValue(50, currentOperation);
+                setResultWithMaxTermValue(50);
             default:
-                setResultWithMaxTermValue(100, currentOperation);
+                setResultWithMaxTermValue(100);
         }
         
         Main.plugin.getServer().broadcastMessage(
@@ -41,17 +41,22 @@ public class Challenge {
 
     }
 
-    private static void setResultWithMaxTermValue(int max, Operation currentOperation) {
+    private static void setResultWithMaxTermValue(int max) {
         term1 = ThreadLocalRandom.current().nextInt(1, max + 1);
         term2 = ThreadLocalRandom.current().nextInt(1, max + 1);
         
         switch(currentOperation) {
             case MULTIPLICATION:
                 currentResult = term1 * term2;
+                break;
             case SUBTRACTION:
                 currentResult = term1 - term2;
-            default:
+                break;
+            case ADDITION:
                 currentResult = term1 + term2;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + currentOperation);
         }
     }
 
@@ -61,27 +66,32 @@ public class Challenge {
             throw new RuntimeException("[mathchallenge] Trying to set challenge winner but no player is playing");
         }
 
-
-        Bukkit.getServer().getScheduler().runTask(Main.plugin, () -> {
-            Main.plugin.getEconomy().depositPlayer(player, Main.plugin.getConfig().getInt("challenge_money_reward"));
-        });
-
         int reward;
 
         switch(currentOperation) {
             case MULTIPLICATION:
                 reward = Main.plugin.getConfig().getInt("challenge_money_reward.multiplication");
+                break;
             case SUBTRACTION:
                 reward = Main.plugin.getConfig().getInt("challenge_money_reward.subtraction");
-            default:
+                break;
+            case ADDITION:
                 reward = Main.plugin.getConfig().getInt("challenge_money_reward.addition");
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + currentOperation);
         }
+
+        double finalReward = reward + (reward * Main.plugin.getConfig().getDouble("rewardMultiplicatorPerPlayer") * Bukkit.getOnlinePlayers().size());
+        Bukkit.getServer().getScheduler().runTask(Main.plugin, () -> {
+            Main.plugin.getEconomy().depositPlayer(player, finalReward);
+        });
 
         Main.plugin.getServer().broadcastMessage(
                 String.format(Objects.requireNonNull(Main.plugin.getConfig().getString("won_message")),
                         currentResult,
                         player.getDisplayName(),
-                        reward
+                        finalReward
                 )
         );
 

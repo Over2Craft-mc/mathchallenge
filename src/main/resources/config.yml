@@ -8,10 +8,13 @@ won_message: '§8[§6Over§b2§2Math§8]§c La réponse était %s. Bravo %s, tu 
 
 # Interval in seconds between each challenge
 # 60 = 1 min ; 300 = 5 min
-challenge_interval_in_seconds: 300
+challenge_interval_in_seconds: 600
 
 # How much money player win when he find the correct answere
 challenge_money_reward: 
   multiplication: 300
   subtraction: 150
   addition: 100
+
+# The reward will be challenge_money_reward + (challenge_money_reward * rewardMultiplicatorPerPlayer * playernumber)
+rewardMultiplicatorPerPlayer: 0.05

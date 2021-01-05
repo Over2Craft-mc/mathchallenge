@@ -10,9 +10,13 @@ public class ChatListener implements Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         if (Challenge.isPlaying()) {
-            if (event.getMessage().equals(Challenge.getCurrentResult() + "")) {
-                Challenge.setWinner(event.getPlayer());
-            }
+
+            try {
+                if (Integer.parseInt(event.getMessage()) == Challenge.getCurrentResult()) {
+                    Challenge.setWinner(event.getPlayer());
+                }
+            } catch (Exception ignored) {}
+
         }
     }
 }
