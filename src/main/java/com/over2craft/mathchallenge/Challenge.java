@@ -29,8 +29,10 @@ public class Challenge {
         switch(currentOperation) {
             case MULTIPLICATION:
                 setResultWithMaxTermValue(10);
+                break;
             case SUBTRACTION:
                 setResultWithMaxTermValue(50);
+                break;
             default:
                 setResultWithMaxTermValue(100);
         }
